@@ -25,8 +25,11 @@ jobs:
           conda install -y conda-verify
           conda install -y anaconda-client
           conda-build recipe
-      - name: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: jarvis_util-0.0.0-py311_0.conda
-          path: /usr/share/miniconda/envs/test/conda-bld/linux-64/jarvis_util-0.0.0-py311_0.conda
+#      - name: upload
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: jarvis_util-0.0.0-py311_0.conda
+#          path: /usr/share/miniconda/envs/test/conda-bld/linux-64/jarvis_util-0.0.0-py311_0.conda
+      - name: release
+        run: |
+          anaconda -t  "${{ secrets.ANACONDA_TOKEN }}" upload /usr/share/miniconda/envs/test/conda-bld/linux-64/jarvis_util-0.0.0-py311_0.conda
